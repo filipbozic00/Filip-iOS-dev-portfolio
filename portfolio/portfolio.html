@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="apple.png">
+    <meta name="msapplication-TileColor" content="#0066CC">
+    <meta name="theme-color" content="#FFFFFF">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iOS Developer Portfolio</title>
+    <style>
+        /* Apple Design System */
+        :root {
+            /* Apple SF Pro fonts */
+            --font-sf-pro-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+            --font-sf-pro-text: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+            --font-sf-mono: 'SF Mono', SFMono-Regular, ui-monospace, monospace;
+            
+            /* Apple color palette */
+            --apple-blue: #0066CC;
+            --apple-indigo: #5E5CE6;
+            --apple-purple: #BF5AF2;
+            --apple-red: #FF3B30;
+            --apple-orange: #FF9500;
+            --apple-yellow: #FFCC00;
+            --apple-green: #34C759;
+            --apple-mint: #00C7BE;
+            --apple-teal: #59ADC4;
+            --apple-cyan: #32ADE6;
+            
+            /* Apple system grays */
+            --apple-gray: #8E8E93;
+            --apple-gray2: #AEAEB2;
+            --apple-gray3: #C7C7CC;
+            --apple-gray4: #D1D1D6;
+            --apple-gray5: #E5E5EA;
+            --apple-gray6: #F2F2F7;
+            
+            /* Apple text colors */
+            --text-primary: rgba(0, 0, 0, 0.92);
+            --text-secondary: rgba(0, 0, 0, 0.6);
+            --text-tertiary: rgba(0, 0, 0, 0.3);
+            
+            /* System spacing units */
+            --spacing-xxs: 4px;
+            --spacing-xs: 8px;
+            --spacing-s: 16px;
+            --spacing-m: 24px;
+            --spacing-l: 32px;
+            --spacing-xl: 48px;
+            --spacing-xxl: 64px;
+            
+            /* System corners */
+            --radius-s: 6px;
+            --radius-m: 10px;
+            --radius-l: 14px;
+            --radius-xl: 20px;
+            --radius-pill: 999px;
+        }
+        
+        /* Global resets */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+        
+        body {
+            font-family: var(--font-sf-pro-text);
+            color: var(--text-primary);
+            line-height: 1.5;
+            background-color: #ffffff;
+            padding: 0;
+            margin: 0;
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4, h5 {
+            font-family: var(--font-sf-pro-display);
+            font-weight: 600;
+            letter-spacing: -0.015em;
+        }
+        
+        h1 {
+            font-size: 56px;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: var(--spacing-m);
+            line-height: 1.1;
+        }
+        
+        h2 {
+            font-size: 32px;
+            letter-spacing: -0.01em;
+            margin-bottom: var(--spacing-m);
+            margin-top: var(--spacing-xl);
+            color: var(--text-primary);
+        }
+        
+        h3 {
+            font-size: 24px;
+            margin-bottom: var(--spacing-s);
+            margin-top: var(--spacing-l);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        h4 {
+            font-size: 19px;
+            margin-bottom: var(--spacing-s);
+            margin-top: var(--spacing-m);
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+        
+        p {
+            font-size: 17px;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-m);
+        }
+        
+        ul {
+            list-style-type: none;
+            margin-bottom: var(--spacing-l);
+        }
+        
+        li {
+            font-size: 17px;
+            margin-bottom: var(--spacing-s);
+            position: relative;
+            padding-left: var(--spacing-m);
+            color: var(--text-secondary);
+        }
+        
+        li::before {
+            content: "•";
+            color: var(--apple-blue);
+            position: absolute;
+            left: 0;
+            font-size: 20px;
+        }
+        
+        strong {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        code {
+            font-family: var(--font-sf-mono);
+            font-size: 15px;
+            background-color: var(--apple-gray6);
+            padding: 2px 6px;
+            border-radius: var(--radius-s);
+        }
+        
+        a {
+            color: var(--apple-blue);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        a:hover {
+            color: var(--apple-indigo);
+        }
+        
+        /* Layout */
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-l);
+        }
+        
+        /* Apple-style header */
+        header {
+            text-align: center;
+            padding: var(--spacing-xxl) 0;
+            background: linear-gradient(180deg, #FBFBFD 0%, #F5F5F7 100%);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-name {
+            font-size: 56px;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            background: linear-gradient(90deg, var(--apple-blue) 0%, var(--apple-indigo) 50%, var(--apple-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: var(--spacing-s);
+            line-height: 1.1;
+        }
+        
+        .header-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-m);
+            color: var(--text-primary);
+        }
+        
+        .header-subtitle {
+            font-size: 21px;
+            color: var(--text-secondary);
+            max-width: 580px;
+            margin: 0 auto var(--spacing-l);
+        }
+        
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 30%, rgba(0, 102, 204, 0.1) 0%, rgba(255, 255, 255, 0) 50%);
+        }
+        
+        /* Contact info */
+        .contact-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: var(--spacing-s);
+            margin-top: var(--spacing-l);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            color: var(--text-secondary);
+            padding: var(--spacing-xs) var(--spacing-s);
+            border-radius: var(--radius-pill);
+            background-color: rgba(0, 0, 0, 0.05);
+            font-size: 15px;
+            transition: all 0.2s ease;
+        }
+        
+        .contact-item:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-s);
+            margin-top: var(--spacing-m);
+        }
+        
+        .social-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--spacing-xs) var(--spacing-m);
+            border-radius: var(--radius-pill);
+            background-color: var(--apple-blue);
+            color: white;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .social-button:hover {
+            background-color: var(--apple-indigo);
+            color: white; /* Ensures text remains white */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+        }
+
+        
+        .section {
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-xl);
+            border-bottom: 1px solid var(--apple-gray5);
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+        }
+        
+        /* Components */
+        .project {
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-l);
+            background-color: var(--apple-gray6);
+            border-radius: var(--radius-l);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .project:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        }
+        
+        .project:last-child {
+            margin-bottom: 0;
+        }
+        
+        .project-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xxs);
+            color: var(--text-primary);
+        }
+        
+        .project-subtitle {
+            font-size: 17px;
+            color: var(--apple-blue);
+            font-weight: 500;
+            margin-bottom: var(--spacing-s);
+        }
+        
+        .skill-group {
+            margin-bottom: var(--spacing-l);
+        }
+        
+        .skill-title {
+            color: var(--apple-blue);
+            font-size: 19px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-s);
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-title::before {
+            content: "";
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: var(--apple-blue);
+            border-radius: 50%;
+            margin-right: var(--spacing-xs);
+        }
+        
+        /* Badge component */
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: var(--spacing-m);
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: rgba(0, 102, 204, 0.1);
+            color: var(--apple-blue);
+            border-radius: var(--radius-pill);
+            font-size: 13px;
+            font-weight: 500;
+            margin-right: var(--spacing-xs);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        /* Button/Link styles */
+        .cta-container {
+            display: flex;
+            justify-content: center;
+            margin: var(--spacing-xl) 0;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--apple-blue);
+            color: white;
+            padding: var(--spacing-s) var(--spacing-l);
+            border-radius: var(--radius-pill);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 17px;
+            transition: all 0.2s ease;
+            text-align: center;
+            min-width: 160px;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--apple-indigo);
+            color: white; /* Ensures text remains white */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: var(--spacing-xl) 0;
+            background-color: var(--apple-gray6);
+            color: var(--text-secondary);
+            font-size: 15px;
+            border-top: 1px solid var(--apple-gray5);
+        }
+        
+        .copyright {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            margin-top: var(--spacing-s);
+        }
+        
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .header-name {
+                font-size: 42px;
+            }
+            
+            .header-title {
+                font-size: 24px;
+            }
+            
+            h2 {
+                font-size: 28px;
+            }
+            
+            .container {
+                padding: 0 var(--spacing-m);
+            }
+            
+            .project {
+                padding: var(--spacing-m);
+            }
+            
+            .contact-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-primary: rgba(255, 255, 255, 0.92);
+                --text-secondary: rgba(255, 255, 255, 0.6);
+                --text-tertiary: rgba(255, 255, 255, 0.3);
+                
+                --apple-gray5: rgba(255, 255, 255, 0.12);
+                --apple-gray6: rgba(255, 255, 255, 0.08);
+            }
+            
+            body {
+                background-color: #000000;
+            }
+            
+            header {
+                background: linear-gradient(180deg, #1A1A1A 0%, #0D0D0D 100%);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .header-bg {
+                background: radial-gradient(circle at 70% 30%, rgba(94, 92, 230, 0.2) 0%, rgba(0, 0, 0, 0) 60%);
+            }
+            
+            .contact-item {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+            
+            .contact-item:hover {
+                background-color: rgba(255, 255, 255, 0.15);
+            }
+            
+            .project {
+                background-color: rgba(44, 44, 46, 0.8);
+            }
+            
+            code {
+                background-color: rgba(44, 44, 46, 0.8);
+            }
+            
+            footer {
+                background-color: rgba(28, 28, 30, 0.8);
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-bg"></div>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="header-name">Filip Božić</h1>
+                <h2 class="header-title">iOS Developer</h2>
+                <p class="header-subtitle">Crafting exceptional app experiences with Swift, SwiftUI, and modern architectures. Hungry for knowledge</p>
+                
+                <div class="contact-container">
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+                            <path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2"></path>
+                            <path d="M22 6l-10 7L2 6"></path>
+                            <path d="M2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6"></path>
+                        </svg>
+                        fbozic7@gmail.com
+                    </div>
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        +386 70 682 552
+                    </div>
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        Maribor, Slovenia
+                    </div>
+                </div>
+                
+                <div class="social-buttons">
+                    <a href="https://www.linkedin.com/in/filip-božić-a96b0b155/" class="social-button" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                        LinkedIn
+                    </a>
+                    <a href="https://www.instagram.com/fikuzs/" class="social-button" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        Instagram
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="section">
+            <h2>About Me</h2>
+            <p>I'm a seasoned iOS developer with 3 years of experience crafting robust, scalable applications. I specialize in <strong>Swift</strong> and <strong>SwiftUI</strong>, complemented by practical <strong>UIKit</strong> knowledge. My core competencies include architecting applications using <strong>MVVM</strong> and <strong>The Composable Architecture (TCA)</strong>, developing reusable SDKs, optimizing application performance, and streamlining development workflows through <strong>GitHub Actions, scripting, and Fastlane</strong>.</p>
+            
+            <div class="badge-container">
+                <span class="badge">Swift</span>
+                <span class="badge">SwiftUI</span>
+                <span class="badge">TCA</span>
+                <span class="badge">MVVM</span>
+                <span class="badge">Tuist</span>
+                <span class="badge">XCFrameworks</span>
+                <span class="badge">GitHub Actions</span>
+                <span class="badge">Fastlane</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Technical Expertise</h2>
+            
+            <div class="skill-group">
+                <h3 class="skill-title">Programming & Frameworks</h3>
+                <ul>
+                    <li><strong>Swift</strong>: Strong proficiency in Swift 5 and Swift 6, including modern language features.</li>
+                    <li><strong>SwiftUI</strong>: Expert in building responsive UIs with complex state management and custom animations</li>
+                    <li><strong>UIKit</strong>: Working knowledge of UIKit fundamentals and SwiftUI integration patterns</li>
+                    <li><strong>Tuist</strong>: Feeling for modularization and scalability</li>
+                </ul>
+            </div>
+
+            <div class="skill-group">
+                <h3 class="skill-title">Architecture & Design Patterns</h3>
+                <ul>
+                    <li><strong>The Composable Architecture (TCA)</strong>: 1 year and a half implementing scalable, testable features with precise state management, also with TDD practice</li>
+                    <li><strong>MVVM</strong>: Designing decoupled, maintainable application layers with reactive bindings</li>
+                </ul>
+            </div>
+
+            <div class="skill-group">
+                <h3 class="skill-title">SDK Development</h3>
+                <ul>
+                    <li><strong>XCFrameworks</strong>: Designing, building, and distributing modular ABI stable, binary frameworks compatible across multiple platforms.</li>
+                    <li><strong>API Design</strong>: Creating intuitive, well-documented public interfaces for third-party integration</li>
+                    <li><strong>Versioning Strategy</strong>: Implementing semantic versioning and managing backward compatibility</li>
+                </ul>
+            </div>
+
+            <div class="skill-group">
+                <h3 class="skill-title">DevOps & Automation</h3>
+                <ul>
+                    <li><strong>CI/CD Pipeline Optimization</strong>: Configuring GitHub Actions workflows for efficient build, test, and deployment processes</li>
+                    <li><strong>Fastlane</strong>: Automating App Store deployments, certificate management, and testing procedures</li>
+                    <li><strong>Bash Scripting</strong>: Creating custom automation tools for development environment setup and maintenance</li>
+                </ul>
+            </div>
+
+            <div class="skill-group">
+                <h3 class="skill-title">Performance Optimization</h3>
+                <ul>
+                    <li><strong>Xcode Instruments</strong>: Profiling applications to identify memory leaks, CPU bottlenecks, and rendering issues</li>
+                    <li><strong>Periphery</strong>: Implementing dead code analysis to maintain codebase efficiency</li>
+                    <li><strong>SwiftUI Performance</strong>: Optimizing rendering cycles and view hierarchies for smooth user experiences</li>
+                </ul>
+            </div>
+
+            <div class="skill-group">
+                <h3 class="skill-title">Testing Methodologies</h3>
+                <ul>
+                    <li><strong>Test-Driven Development</strong>: Implementing unit and integration tests to ensure code reliability</li>
+                    <li><strong>Swift Testing</strong>: Writing clear, better and more expressive tests with less code</li>
+                    <li><strong>XCTest Framework</strong>: Writing effective test suites for business logic and UI components</li>
+                    <li><strong>Mock Objects</strong>: Creating testable architecture through dependency injection and protocol mocking</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Project Portfolio</h2>
+
+            <div class="project">
+                <h3 class="project-title">Impact Wrap</h3>
+                <p class="project-subtitle">Boxing analytics platform</p>
+                <p>Advanced workout tracking application for combat sports athletes</p>
+                
+                <div class="badge-container">
+                    <span class="badge">TCA</span>
+                    <span class="badge">SwiftUI</span>
+                    <span class="badge">Bluetooth</span>
+                    <span class="badge">Real-time Processing</span>
+                </div>
+                
+                <h4>Technical Implementation:</h4>
+                <ul>
+                    <li>Architected core workout tracking modules using <strong>TCA</strong> to manage complex state transitions and side effects</li>
+                    <li>Worked with real-time data processing pipeline for sensor input with efficient state propagation</li>
+                    <li>Designed responsive UI components in <strong>SwiftUI</strong> with custom animations for workout feedback</li>
+                    <li>Worked on BLE communication layer for reliable device connectivity and data synchronization</li>
+                    <li>Integrated Firebase Analytics and Crashlytics</li>
+                </ul>
+            </div>
+
+            <div class="project">
+                <h3 class="project-title">Spar Austria</h3>
+                <p class="project-subtitle">Retail Mobile Experience</p>
+                <p>Feature-rich iOS application for major European retail chain</p>
+                
+                <div class="badge-container">
+                    <span class="badge">SwiftUI</span>
+                    <span class="badge">UIKit</span>
+                    <span class="badge">MVVM</span>
+                </div>
+                
+                <h4>Technical Implementation:</h4>
+                <ul>
+                    <li>Started on fresh project, constructing with MVVM architecture</li>
+                    <li>Developed modular UI components, wrapped UIKit clustering in SwiftUI</li>
+                    <li>Wrapped UIKit clustering in SwiftUI</li>
+                </ul>
+            </div>
+
+            <div class="project">
+                <h3 class="project-title">Physio App</h3>
+                <p class="project-subtitle">Therapeutic Exercise Platform</p>
+                <p>Specialized workout platform for physiotherapy and rehabilitation</p>
+                
+                <div class="badge-container">
+                    <span class="badge">XCFramework</span>
+                    <span class="badge">Offline-First</span>
+                    <span class="badge">CI/CD</span>
+                    <span class="badge">GitHub Actions</span>
+                    <span class="badge">Fastlane</span>
+                    <span class="badge">Tuist</span>
+                </div>
+                
+                <h4>Technical Implementation:</h4>
+                <ul>
+                    <li>Engineered a comprehensive <strong>SDK (XCFramework)</strong> with a clean, intuitive API for workout session management</li>
+                    <li>Pipeline to update and publish new versions of SDK</li>
+                    <li>Implemented persistence layer and custom file system for reliable workout session history tracking</li>
+                    <li>Designed fault-tolerant architecture allowing offline operation with seamless cloud synchronization</li>
+                    <li>Implemented comprehensive logging system for debugging and analytics while preserving user privacy</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="cta-container">
+            <a href="mailto:fbozic7@gmail.com" class="cta-button">Get in touch</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>Filip Božić • iOS Developer</p>
+            <p class="copyright">© 2025 All rights reserved</p>
+        </div>
+    </footer>
+</body>
+</html>
